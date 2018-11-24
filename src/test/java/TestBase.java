@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.codeborne.selenide.Selenide.open;
+
 public class TestBase {
 
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
@@ -13,19 +15,7 @@ public class TestBase {
     @Before
     public void start() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-
-        if (tlDriver.get() != null) {
-            driver = tlDriver.get();
-            wait = new WebDriverWait(driver, 10);
-            return;
-        }
-
-        driver = new ChromeDriver();
-        tlDriver.set(driver);
-        wait = new WebDriverWait(driver, 10);
-
-        Runtime.getRuntime().addShutdownHook(
-                new Thread(() -> { driver.quit(); driver = null; }));
+        open("http://localhost/litecart/public_html/admin/");
     }
 
     @After
