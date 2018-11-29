@@ -40,13 +40,30 @@ public class CartPageTest {
         Assert.assertEquals(mainPage, titleproductPage);
         Assert.assertEquals(price, priceOnProductPage);
         Assert.assertEquals(campaignPrice,campaignPriceOnProductPage);
-        Assert.assertEquals(priceColor,"rgba(119, 119, 119, 1)");
+//        Assert.assertEquals(priceColor,"rgba(119, 119, 119, 1)");
+        String colorspriceColor[];
+        colorspriceColor = priceColor.replace("rgba(", "").split(",");
+        Assert.assertEquals(colorspriceColor[0].trim(), colorspriceColor[1].trim());
+        Assert.assertEquals(colorspriceColor[1].trim(), colorspriceColor[2].trim());
         Assert.assertEquals(priceDec,"s");
-        Assert.assertEquals(campaignPriceColor,"rgba(204, 0, 0, 1)");
+//        Assert.assertEquals(campaignPriceColor,"rgba(204, 0, 0, 1)");
+        String colorscampaignPrice[];
+        colorscampaignPrice = campaignPriceColor.replace("rgba(", "").split(",");
+        Assert.assertEquals(colorscampaignPrice[1].trim(), "0");
+        Assert.assertEquals(colorscampaignPrice[2].trim(), "0");
         Assert.assertEquals(campaignPriceDec,"strong");
-        Assert.assertEquals(priceColorOnProductPage,"rgba(102, 102, 102, 1)");
+
+//        Assert.assertEquals(priceColorOnProductPage,"rgba(102, 102, 102, 1)");
+        String colorsOnProductPage[];
+        colorsOnProductPage = priceColorOnProductPage.replace("rgba(", "").split(",");
+        Assert.assertEquals(colorsOnProductPage[0].trim(), colorsOnProductPage[1].trim());
+        Assert.assertEquals(colorsOnProductPage[1].trim(), colorsOnProductPage[2].trim());
         Assert.assertEquals(priceDecOnProductPage,"s");
-        Assert.assertEquals(campaignPriceColorOnProductPage,"rgba(204, 0, 0, 1)");
+        String colors[];
+        colors = campaignPriceColorOnProductPage.replace("rgba(", "").split(",");
+        Assert.assertEquals(colors[1].trim(), "0");
+        Assert.assertEquals(colors[2].trim(), "0");
+        //Assert.assertEquals(campaignPriceColorOnProductPage,"rgba(204, 0, 0, 1)");
         Assert.assertEquals(campaignPriceDecOnProductPage,"strong");
 
         Assert.assertTrue(Double.parseDouble(priceFontSize.replace("px","")) < Double.parseDouble(campaignPriceFontSize.replace("px","")));
